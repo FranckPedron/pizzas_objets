@@ -20,10 +20,12 @@ class Pizza:
 class PizzaPersonalisee(Pizza):
     PRIX_DE_BASE = 7
     PRIX_PAR_INGREDIENT = 1.2
+    dernier_numero = 0
 
-    def __init__(self, numero):
-        self.numero = numero
-        super().__init__("Personnalisée", 0, [])
+    def __init__(self):
+        PizzaPersonalisee.dernier_numero += 1
+        self.numero = PizzaPersonalisee.dernier_numero
+        super().__init__("Personnalisée " + str(self.numero), 0, [])
         self.demander_ingredients_utilisateur()
         self.calculer_prix()
 
@@ -47,8 +49,8 @@ pizzas = [
     Pizza("Océane", 11.5, ("Fruits de mer", "Emmental", "Tomate", "Parmesan"), False),
     Pizza("Texane", 9.5, ("Steak haché", "Emmental", "Tomate", "Parmesan"), False),
     Pizza("Poulet", 10.5, ("Crème", "Emmental", "Champignons"), False),
-    PizzaPersonalisee(1),
-    PizzaPersonalisee(2)
+    PizzaPersonalisee(),
+    PizzaPersonalisee()
 ]
 
 for pizza in pizzas:
